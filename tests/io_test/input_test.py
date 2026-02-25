@@ -15,5 +15,15 @@ class InputTest(unittest.TestCase):
         string = read_from_file_python_builtin("data/test.txt")
         self.assertIsInstance(string, str)
 
-    def test_read_from_file_pandas(self):
-        pass
+
+    def test_not_null_pandas(self):
+        file = read_from_file_pandas("data/test.txt")
+        self.assertIsNotNone(file)
+
+    def test_return_dataframe_pandas(self):
+        result = read_from_file_pandas("data/test.txt")
+        self.assertIsInstance(result, pandas.DataFrame)
+
+    def test_if_text_in_column_pandas(self):
+        result = read_from_file_pandas("data/test.txt")
+        self.assertIn("Today is wonderful day", result.columns)
